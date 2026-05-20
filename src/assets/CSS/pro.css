@@ -1,0 +1,24 @@
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* التنسيق البرمجي لحركة القلب */
+.flip-card-inner {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* الربط السحري: لما الماوس ييجي على الـ group، يلف الـ inner بمقدار 180 درجة */
+.group:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}

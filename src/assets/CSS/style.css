@@ -1,0 +1,52 @@
+/* تأثير الزجاج (Glassmorphism) للهيدر */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* تأثير عند الوقوف على اللينكات */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #FF8812; /* لون الأورانج بتاعك */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* أنيميشن ظهور قائمة الموبايل */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: slideDown 0.3s ease-out forwards;
+}
+.logo {
+    width: 150px !important;
+    height: 150px !important;
+}
+.logo3 {
+    display: flex;
+    width: 180px !important;
+    height: 180px !important;
+    align-items: center !important;
+    justify-self: center;
+}
+.logo2 {
+    width: 100px !important;
+    height: 100px !important;
+}
