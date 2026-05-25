@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dptech-app/static/css/main.83cd2718.css",
-    "main.js": "/dptech-app/static/js/main.116b6fa3.js",
+    "main.css": "/dptech-app/static/css/main.0fc0cbed.css",
+    "main.js": "/dptech-app/static/js/main.b958e1ec.js",
     "static/media/lineup_img01_01.png": "/dptech-app/static/media/lineup_img01_01.23ef56cbc42a5d6d7ca4.png",
     "static/media/lineup_img02.png": "/dptech-app/static/media/lineup_img02.295178fac02896da8eca.png",
     "static/media/Advantages-pic-EuroPlaster.png": "/dptech-app/static/media/Advantages-pic-EuroPlaster.e6ee973d8da80bee4e96.png",
@@ -23,11 +23,11 @@
     "static/media/atlantic_storm_grey_marble_effect_polished_porcelain_wall___floor_tile.jpg": "/dptech-app/static/media/atlantic_storm_grey_marble_effect_polished_porcelain_wall___floor_tile.7a54557b65cfb1252079.jpg",
     "static/media/PRW675.png": "/dptech-app/static/media/PRW675.a2915c824ca86ee40bd9.png",
     "index.html": "/dptech-app/index.html",
-    "main.83cd2718.css.map": "/dptech-app/static/css/main.83cd2718.css.map",
-    "main.116b6fa3.js.map": "/dptech-app/static/js/main.116b6fa3.js.map"
+    "main.0fc0cbed.css.map": "/dptech-app/static/css/main.0fc0cbed.css.map",
+    "main.b958e1ec.js.map": "/dptech-app/static/js/main.b958e1ec.js.map"
   },
   "entrypoints": [
-    "static/css/main.83cd2718.css",
-    "static/js/main.116b6fa3.js"
+    "static/css/main.0fc0cbed.css",
+    "static/js/main.b958e1ec.js"
   ]
 }
