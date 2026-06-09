@@ -171,7 +171,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 4. Project Tracking Section (تم نقله للأعلى كما طلبتِ) */}
+      {/* 4. Project Tracking Section  */}
       <section id="project-tracking" className="py-28 bg-gradient-to-br from-[#fdfbfb] to-[#ebedee] relative overflow-hidden text-dp-blue">
         <div className="absolute inset-0 opacity-40 pointer-events-none">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-dp-orange/10 rounded-full blur-[120px]"></div>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Result = () => {
   // بيانات تجريبية لنتائج المسح
@@ -17,6 +18,48 @@ const Result = () => {
     },
     // تقدر تضيف أي عدد من النتائج هنا وهتظهر لوحدها
   ];
+  const [zones, setZones] = useState([]);
+
+// 💡 المصفوفة الاحتياطية (الفيك) بتاعتك
+const fakeZones = [
+  { id: "wall", title: "Wall Design", subtitle: "Optimal paint colors and wall treatments", icon: "fa-paint-roller", items: [{ label: "Recommended Paint", sub: "Premium Quality", name: "Warm Beige #EBEBD3", color: "#EBEBD3", extra: "Manufacturer: ColorTech Pro" }] },
+  { id: "floor", title: "Flooring Options", subtitle: "Durable and stylish flooring recommendations", icon: "fa-layer-group", items: [{ label: "Engineered Hardwood", tag: "Best Match", tagCol: "bg-green-100 text-green-700", name: "Light Oak finish, scratch-resistant", extra: "Manufacturer: FloorMaster Elite", price: "Est. $45-65 per m²" }] },
+  { id: "ceiling", title: "Ceiling & Lighting", subtitle: "Lighting solutions and ceiling treatments", icon: "fa-lightbulb", items: [{ label: "Recessed LED Lights", tag: "Energy Efficient", tagCol: "bg-yellow-100 text-yellow-700", name: "Warm white, dimmable, 6 units", extra: "Manufacturer: LightPro Systems", price: "Est. $320-480 total" }] },
+  { id: "furniture", title: "Smart Furniture Layout", subtitle: "Optimized placement for functionality", icon: "fa-couch", items: [{ label: "3-Seater Sofa", tag: "Perfect Fit", tagCol: "bg-green-100 text-green-700", name: "220cm width, fabric upholstery", extra: "Manufacturer: ComfortLine Home", price: "Est. $1,200-1,800" }] }
+];
+useEffect(() => {
+  const fetchAIData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      // استخدام الـ ID الافتراضي من مثال زميلتك
+      const response = await axios.get('http://localhost:5000/api/elements/project/6a25c651d3e87e1547704872', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (response.data?.data?.length > 0) {
+        const serverItems = response.data.data.map(item => ({
+          label: item.itemName,
+          sub: "AI Calculated",
+          name: `Quantity: ${item.quantity} ${item.unit}`,
+          extra: item.remarks,
+          price: `Total: $${item.totalPrice}`,
+          tag: "AI verified",
+          tagCol: "bg-purple-100 text-purple-700"
+        }));
+
+        setZones([
+          { id: "ai-features", title: "AI Quantity Survey Results", subtitle: "Real calculations from drawings", icon: "fa-wand-magic-sparkles", items: serverItems },
+          ...fakeZones
+        ]);
+      } else {
+        setZones(fakeZones);
+      }
+    } catch (error) {
+      setZones(fakeZones); // لو السيرفر مش شغال يعرض الفيك
+    }
+  };
+  fetchAIData();
+}, []);
 
   const [searchQuery, setSearchQuery] = useState("");
   const roomDimensions = [
@@ -26,7 +69,6 @@ const Result = () => {
   { label: "Ceiling Height", value: "2.8 m" },
   { label: "Door Width", value: "0.9 m" },
 ];
-
 const furnitureData = [
   { 
     name: "Sofa", 
@@ -107,52 +149,6 @@ const designs = [
     budget: "$2,900 - $4,100"
   }
 ];
-const zonesData = [
-  {
-    id: "wall",
-    title: "Wall Design",
-    subtitle: "Optimal paint colors and wall treatments",
-    icon: "fa-paint-roller",
-    items: [
-      { label: "Recommended Paint", sub: "Premium Quality", name: "Warm Beige #EBEBD3", color: "#EBEBD3", extra: "Manufacturer: ColorTech Pro" },
-      { label: "Accent Wall", sub: "Statement Piece", name: "Deep Navy #1A2F48", color: "#1A2F48", extra: "Manufacturer: ColorTech Pro" }
-    ],
-    buttonText: "View Full Color Options in App"
-  },
-  {
-    id: "floor",
-    title: "Flooring Options",
-    subtitle: "Durable and stylish flooring recommendations",
-    icon: "fa-layer-group",
-    items: [
-      { label: "Engineered Hardwood", tag: "Best Match", tagCol: "bg-green-100 text-green-700", name: "Light Oak finish, scratch-resistant", extra: "Manufacturer: FloorMaster Elite", price: "Est. $45-65 per m²" },
-      { label: "Luxury Vinyl Plank", tag: "Budget Friendly", tagCol: "bg-blue-100 text-blue-700", name: "Waterproof, wood-look texture", extra: "Manufacturer: VinylTech Solutions", price: "Est. $28-42 per m²" }
-    ],
-    buttonText: "Explore Flooring in App"
-  },
-  {
-    id: "ceiling",
-    title: "Ceiling & Lighting",
-    subtitle: "Lighting solutions and ceiling treatments",
-    icon: "fa-lightbulb",
-    items: [
-      { label: "Recessed LED Lights", tag: "Energy Efficient", tagCol: "bg-yellow-100 text-yellow-700", name: "Warm white, dimmable, 6 units", extra: "Manufacturer: LightPro Systems", price: "Est. $320-480 total" },
-      { label: "Modern Pendant Light", tag: "Statement Piece", tagCol: "bg-purple-100 text-purple-700", name: "Geometric design, brass finish", extra: "Manufacturer: DesignLux Studio", price: "Est. $180-280" }
-    ],
-    buttonText: "View Lighting Options in App"
-  },
-  {
-    id: "furniture",
-    title: "Smart Furniture Layout",
-    subtitle: "Optimized placement for functionality",
-    icon: "fa-couch",
-    items: [
-      { label: "3-Seater Sofa", tag: "Perfect Fit", tagCol: "bg-green-100 text-green-700", name: "220cm width, fabric upholstery", extra: "Manufacturer: ComfortLine Home", price: "Est. $1,200-1,800" },
-      { label: "Coffee Table Set", tag: "Complementary", tagCol: "bg-blue-100 text-blue-700", name: "120cm diameter, wood & glass", extra: "Manufacturer: ModernCraft Furniture", price: "Est. $380-620" }
-    ],
-    buttonText: "See All Furniture in App"
-  }
-];
 const allItems = [
   {
     id: 1,
@@ -230,7 +226,6 @@ const summaryStats = [
   { label: "Accessories", value: "9 items" },
   { label: "Est. Total Budget", value: "$3,200 - $4,500", isPrice: true },
 ];
-
 const manufacturers = [
   { name: "ComfortLine Home", desc: "3 furniture items", icon: "fa-couch" },
   { name: "ColorTech Pro", desc: "2 paint colors", icon: "fa-paint-roller" },
@@ -238,7 +233,6 @@ const manufacturers = [
   { name: "FloorMaster Elite", desc: "Flooring solution", icon: "fa-layer-group" },
   { name: "HomeDecor Plus", desc: "8 accessories", icon: "fa-gem" },
 ];
-
 const interactiveTools = [
   { title: "I Like This Design", desc: "Save and bookmark your favorite designs", icon: "fa-heart", gradient: "from-pink-500 to-red-500" },
   { title: "Try Another Design", desc: "Generate alternative AI suggestions instantly", icon: "fa-rotate", gradient: "from-blue-500 to-purple-500" },
@@ -292,7 +286,6 @@ const interactiveTools = [
           </motion.div>
         </div>
       </section>
-
       {/* --- Scan Results List --- */}
       <section id="scan-results-list" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -560,9 +553,8 @@ const interactiveTools = [
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {zonesData.map((zone) => (
-              <div 
-                key={zone.id} 
+            {zones.map((zone) => (
+              <div key={zone.id} 
                 className="bg-gradient-to-br from-[#EBEBD3] to-white rounded-[2.5rem] shadow-lg p-8 hover:shadow-2xl transition-all duration-500 border border-gray-100 group"
               >
                 {/* Zone Header */}
@@ -805,7 +797,6 @@ const interactiveTools = [
           </div>
         </div>
       </section>
-
       {/* --- Interactive Features Section --- */}
       <section id="interactive-features" className="py-20 bg-gradient-to-br from-[#EBEBD3] to-white text-left">
         <div className="max-w-7xl mx-auto px-6">

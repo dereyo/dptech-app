@@ -68,13 +68,14 @@ const Hero = () => {
   transition={{ duration: 0.8 }}
   viewport={{ once: true }}
 >
-  {/* Floating Animation for the whole card */}
+
+{/* Floating Animation for the whole card */}
   <motion.div 
     animate={{ y: [0, -20, 0] }}
     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-    className="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-8 relative"
+    className="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl p-4 sm:p-6 md:p-8 relative"
   >
-    <div className="bg-gradient-to-br from-dp-beige to-gray-100 rounded-[2rem] h-64 md:h-80 flex items-center justify-center mb-6 overflow-hidden">
+    <div className="bg-gradient-to-br from-dp-beige to-gray-100 rounded-[1.5rem] sm:rounded-[2rem] h-52 sm:h-64 md:h-80 flex items-center justify-center mb-6 overflow-hidden">
       <img 
         className="w-full h-full object-cover" 
         src="https://storage.googleapis.com/uxpilot-auth.appspot.com/fca16074ad-063b4b8af4473177d361.png" 
@@ -82,26 +83,30 @@ const Hero = () => {
       />
     </div>
     
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
       <div>
-        <h3 className="text-xl font-bold text-dp-blue">Your Dream Space</h3>
-        <p className="text-gray-600 text-sm">Visualize before you build</p>
+        <h3 className="text-lg sm:text-xl font-bold text-dp-blue">Your Dream Space</h3>
+        <p className="text-gray-600 text-xs sm:text-sm">Visualize before you build</p>
       </div>
-          <div className="flex items-center space-x-2">
-      <div className="flex -space-x-2">
-        {[2, 5, 8].map(num => (
-          <img 
-            key={num}
-            src={`https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-${num}.jpg`} 
-            className="w-8 h-8 rounded-full border-2 border-white" 
-            alt="Engineer" 
-          />
-        ))}
-      </div>
-      <span className="text-sm text-gray-600 font-medium">+150 Engineers Ready</span>
-    </div>
-      <div className="bg-dp-orange/10 p-3 rounded-xl">
-        <i className="fa-solid fa-wand-magic-sparkles text-dp-orange text-2xl"></i>
+      
+      <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto border-t sm:border-t-0 border-gray-50 pt-2 sm:pt-0">
+        <div className="flex items-center gap-2">
+          <div className="flex -space-x-2">
+            {[2, 5, 8].map(num => (
+              <img 
+                key={num}
+                src={`https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-${num}.jpg`} 
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover" 
+                alt="Engineer" 
+              />
+            ))}
+          </div>
+          <span className="text-xs sm:text-sm text-gray-600 font-medium whitespace-nowrap">+150 Engineers Ready</span>
+        </div>
+        
+        <div className="bg-dp-orange/10 p-2.5 rounded-xl shrink-0">
+          <i className="fa-solid fa-wand-magic-sparkles text-dp-orange text-xl sm:text-2xl"></i>
+        </div>
       </div>
     </div>
     

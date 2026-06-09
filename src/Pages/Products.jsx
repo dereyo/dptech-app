@@ -230,7 +230,6 @@ const handleCalc = (e) => {
       {/* 2. Product Filters Section */}
       <section id="product-filters" className="py-12 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
-          
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -240,7 +239,7 @@ const handleCalc = (e) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 items-end">
               
 {/* Location Filter */}
-<div className="space-y-3 relative">
+        <div className="space-y-3 relative">
   <label className="text-blue-200 text-xs font-medium ml-2 uppercase tracking-wider">Location (Egypt)</label>
   <div className="relative group">
     <div 
@@ -265,7 +264,7 @@ const handleCalc = (e) => {
       </div>
     )}
   </div>
-</div>
+        </div>
 
 {/* Room Type Filter */}
 <div className="space-y-3 relative">
@@ -363,6 +362,7 @@ const handleCalc = (e) => {
           </motion.div>
         </div>
       </section>
+
       {/* 3. Products Display Grid */}
       <section id="products-display" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -377,8 +377,6 @@ const handleCalc = (e) => {
               Showing 124 Products
             </span>
           </div>
-
-
 {/* Grid Layout */}
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
   {[
@@ -479,6 +477,7 @@ const handleCalc = (e) => {
 
         </div>
       </section>
+      {/* 4. styles */}
       <section id="filter-by-style" className="py-20 bg-[#EBEBD3]/30">
       <div className="max-w-7xl mx-auto px-6">
         
@@ -538,6 +537,7 @@ const handleCalc = (e) => {
         </div>
       </div>
     </section>
+    {/* 5. offers */}
     <section id="interactive-offers" className="py-16 bg-white">
       <div className="container mx-auto px-6">
         
@@ -613,7 +613,8 @@ const handleCalc = (e) => {
 
       </div>
     </section>
-    {/* 5. Newsletter Subscription Section */}
+
+    {/* 6. Newsletter Subscription Section */}
       <section id="newsletter-cta" className="py-20 bg-[#EBEBD3]">
         <div className="container mx-auto px-6">
           <motion.div 
@@ -667,71 +668,82 @@ const handleCalc = (e) => {
           </motion.div>
         </div>
       </section>
-      {/* --- سيكشن الحاسبة الذكية: التصميم الكامل (Full-Width Aesthetic) --- */}
-<section className="relative w-full py-24 px-6 overflow-hidden bg-[#f8fafc]">
+
+      {/* -7-- سيكشن الحاسبة الذكية: التصميم الكامل (Full-Width Aesthetic) --- */}
+<section className="relative w-full py-12 md:py-24 px-4 sm:px-6 overflow-hidden bg-[#f8fafc]">
   
   {/* الخلفية الفنية: دوائر ضوئية متحركة (Animated Background Blobs) */}
   <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
     <motion.div 
       animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
       transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-dp-orange/5 rounded-full blur-[120px]"
+      className="absolute -top-24 -left-24 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-dp-orange/5 rounded-full blur-[80px] md:blur-[120px]"
     />
     <motion.div 
       animate={{ x: [0, -40, 0], y: [0, 50, 0] }}
       transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      className="absolute top-1/2 -right-32 w-[600px] h-[600px] bg-blue-400/5 rounded-full blur-[130px]"
+      className="absolute top-1/2 -right-32 w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-400/5 rounded-full blur-[90px] md:blur-[130px]"
     />
   </div>
 
   <div className="max-w-7xl mx-auto relative z-10">
-    <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[4rem] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.05)] overflow-hidden">
-      <div className="grid lg:grid-cols-12 items-stretch">
+    {/* التعديل: جعل الحواف rounded-[2rem] في الموبايل وتعود لـ rounded-[4rem] في الشاشات الكبيرة */}
+    <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2rem] lg:rounded-[4rem] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.05)] overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
         
         {/* الجانب الأيسر: التحكم والمدخلات */}
-        <div className="lg:col-span-5 p-10 md:p-16 bg-gradient-to-br from-white/80 to-transparent border-r border-white/40">
+        {/* التعديل: ضبط مسافات الـ padding وتوسيط النصوص للموبايل */}
+        <div className="lg:col-span-5 p-6 sm:p-10 md:p-16 bg-gradient-to-br from-white/80 to-transparent border-b lg:border-b-0 lg:border-r border-white/40 text-center lg:text-left flex flex-col items-center lg:items-start">
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
             whileInView={{ opacity: 1, x: 0 }}
-            className="space-y-8"
+            viewport={{ once: true }}
+            className="space-y-6 md:space-y-8 w-full"
           >
-            <div className="inline-flex items-center gap-3 px-5 py-2 bg-dp-orange/10 border border-dp-orange/20 rounded-full">
+            <div className="inline-flex items-center gap-3 px-5 py-2 bg-dp-orange/10 border border-dp-orange/20 rounded-full mx-auto lg:mx-0">
               <div className="w-2 h-2 bg-dp-orange rounded-full animate-ping"></div>
-              <span className="text-[11px] font-black text-dp-orange uppercase tracking-[0.2em]">Material Intelligence</span>
+              <span className="text-[10px] md:text-[11px] font-black text-dp-orange uppercase tracking-[0.2em]">Material Intelligence</span>
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-black text-dp-blue leading-tight">
-                Plan Your Space <br />
+              <h2 className="text-3xl md:text-5xl font-black text-dp-blue leading-tight">
+                Plan Your Space <br className="hidden sm:inline" />
                 <span className="text-dp-orange">Like a Pro</span>
               </h2>
-              <p className="text-gray-500 font-medium leading-relaxed">
+              <p className="text-sm md:text-base text-gray-500 font-medium leading-relaxed max-w-md mx-auto lg:mx-0">
                 Stop guessing. Our smart estimator uses building standards to give you precise material requirements for your renovation.
               </p>
             </div>
 
-            <form onSubmit={handleCalc} className="space-y-4">
-              <div className="relative group">
+            {/* التعديل: تحويل الفورم إلى تصميم مرن في الموبايل (حقل إدخال وتحته زر Calculate كامل العرض) */}
+            {/* وفي الشاشات الكبيرة sm:flex يعود الزر كـ absolute مدمج بذكاء كما كان */}
+            <form onSubmit={handleCalc} className="space-y-4 w-full">
+              <div className="relative flex flex-col sm:flex-row gap-3 sm:gap-0 group w-full">
                 <input 
                   type="number"
                   value={area}
                   onChange={(e) => setArea(e.target.value)}
                   placeholder="Total Area (m²)"
-                  className="w-full bg-white border-2 border-slate-100 rounded-3xl px-8 py-5 outline-none focus:border-dp-orange transition-all font-bold text-dp-blue text-lg shadow-sm group-hover:shadow-md"
+                  className="w-full bg-white border-2 border-slate-100 rounded-2xl sm:rounded-3xl px-6 sm:px-8 py-4 sm:py-5 outline-none focus:border-dp-orange transition-all font-bold text-dp-blue text-base sm:text-lg shadow-sm group-hover:shadow-md"
                 />
-                <button type="submit" className="absolute right-3 top-3 bottom-3 bg-dp-blue hover:bg-dp-blue/90 text-white px-8 rounded-2xl font-bold transition-all active:scale-95 flex items-center gap-2">
-                  Calculate <i className="fa-solid fa-wand-magic-sparkles text-xs text-dp-orange"></i>
+                <button 
+                  type="submit" 
+                  className="w-full sm:w-auto sm:absolute sm:right-3 sm:top-3 sm:bottom-3 bg-dp-blue hover:bg-dp-blue/90 text-white py-4 sm:py-0 px-8 rounded-xl sm:rounded-2xl font-bold transition-all active:scale-95 flex items-center justify-center gap-2 shrink-0"
+                >
+                  <span>Calculate</span> 
+                  <i className="fa-solid fa-wand-magic-sparkles text-xs text-dp-orange"></i>
                 </button>
               </div>
-              <p className="text-[10px] text-gray-400 ml-4">* Includes standard 5-10% material wastage factor</p>
+              <p className="text-[9px] md:text-[10px] text-gray-400 text-center lg:text-left ml-0 lg:ml-4">* Includes standard 5-10% material wastage factor</p>
             </form>
           </motion.div>
         </div>
 
         {/* الجانب الأيمن: عرض النتائج (Visual Results) */}
-        <div className="lg:col-span-7 p-10 md:p-16 flex items-center justify-center bg-slate-50/30">
+        {/* التعديل: استخدام grid-cols-1 للشاشات الصغيرة جداً و grid-cols-2 للموبايل العادي والتابلت */}
+        <div className="lg:col-span-7 p-6 sm:p-10 md:p-16 flex items-center justify-center bg-slate-50/30 w-full">
           {result ? (
-            <div className="grid grid-cols-2 gap-6 w-full">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4 md:gap-6 w-full">
               {[
                 { label: "Paint (Liters)", val: result.paint, icon: "fa-paint-roller", color: "text-orange-500", bg: "bg-orange-50" },
                 { label: "Ceramics (m²)", val: result.tiles, icon: "fa-border-all", color: "text-blue-500", bg: "bg-blue-50" },
@@ -741,25 +753,25 @@ const handleCalc = (e) => {
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.05 }}
                   key={i}
-                  className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
+                  className="bg-white p-5 sm:p-6 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
                 >
-                  <div className={`${item.bg} ${item.color} w-14 h-14 rounded-2xl flex items-center justify-center mb-4 text-2xl group-hover:rotate-12 transition-transform`}>
+                  <div className={`${item.bg} ${item.color} w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 text-xl sm:text-2xl group-hover:rotate-12 transition-transform`}>
                     <i className={`fa-solid ${item.icon}`}></i>
                   </div>
-                  <div className="text-3xl font-black text-dp-blue mb-1">{item.val}</div>
-                  <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{item.label}</div>
+                  <div className="text-2xl sm:text-3xl font-black text-dp-blue mb-1">{item.val}</div>
+                  <div className="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest">{item.label}</div>
                 </motion.div>
               ))}
             </div>
           ) : (
-            <div className="text-center space-y-4">
-              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto shadow-inner border border-slate-100">
-                <i className="fa-solid fa-chart-pie text-4xl text-slate-200"></i>
+            <div className="text-center space-y-4 py-8 lg:py-0">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center mx-auto shadow-inner border border-slate-100">
+                <i className="fa-solid fa-chart-pie text-3xl sm:text-4xl text-slate-200"></i>
               </div>
-              <div className="text-slate-400 font-bold uppercase tracking-widest text-sm">Ready to estimate?</div>
-              <p className="text-slate-300 text-xs max-w-[250px]">Enter your room measurements to generate a professional material breakdown.</p>
+              <div className="text-slate-400 font-bold uppercase tracking-widest text-xs sm:text-sm">Ready to estimate?</div>
+              <p className="text-slate-300 text-xs max-w-[250px] mx-auto">Enter your room measurements to generate a professional material breakdown.</p>
             </div>
           )}
         </div>

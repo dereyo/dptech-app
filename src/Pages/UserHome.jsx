@@ -87,7 +87,7 @@ const UserHome = () => {
   return (
     <div >
       {/* 1. Hero Section - User Home */}
-      <section id="hero" className="pt-32 pb-20 bg-gradient-to-br from-white to-dp-beige/30 min-h-[800px] flex items-center overflow-hidden">
+      <section id="hero" className="pt-25 pb-20 bg-gradient-to-br from-white to-dp-beige/30 min-h-[800px] flex items-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
@@ -120,51 +120,57 @@ const UserHome = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <motion.div 
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-8"
-              >
-                <div className="bg-gradient-to-br from-dp-beige to-gray-100 rounded-2xl h-80 flex items-center justify-center mb-6 overflow-hidden">
-                  <img className="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/fca16074ad-063b4b8af4473177d361.png" alt="modern living room" />
-                </div>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-dp-blue">Your Dream Space</h3>
-                    <p className="text-gray-600 text-sm">Visualize before you build</p>
-                  </div>
-                                  <div className="flex items-center space-x-2">
-                  <div className="flex -space-x-2">
-                    {[2, 5, 8].map(n => (
-                      <img key={n} src={`https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-${n}.jpg`} className="w-8 h-8 rounded-full border-2 border-white" alt="avatar" />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600 font-medium">+150 Engineers Ready</span>
-                </div>
-                  <div className="bg-dp-orange/10 p-3 rounded-xl text-dp-orange text-2xl">
-                    <i className="fa-solid fa-wand-magic-sparkles"></i>
-                  </div>
-                </div>
-              </motion.div>
+<motion.div 
+  animate={{ y: [0, -15, 0] }}
+  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+  className="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl p-4 sm:p-6 md:p-8 relative z-10"
+>
+  {/* ضبط ارتفاع الصورة في الموبايل h-52 لتكون ملمومة وفي الشاشات الأكبر تعود h-80 كما هي */}
+  <div className="bg-gradient-to-br from-dp-beige to-gray-100 rounded-2xl h-52 sm:h-80 flex items-center justify-center mb-6 overflow-hidden">
+    <img className="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/fca16074ad-063b4b8af4473177d361.png" alt="modern living room" />
+  </div>
+  
+  {/* تحويل الاتجاه إلى رأسي flex-col في الشاشات الصغيرة جداً ثم أفقي sm:flex-row لمنع تداخل النصوص والـ avatars */}
+  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+    <div>
+      <h3 className="text-lg sm:text-xl font-bold text-dp-blue">Your Dream Space</h3>
+      <p className="text-gray-600 text-xs sm:text-sm">Visualize before you build</p>
+    </div>
+    
+    <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto border-t sm:border-t-0 border-gray-50 pt-2 sm:pt-0">
+      <div className="flex items-center space-x-2">
+        <div className="flex -space-x-2">
+          {[2, 5, 8].map(n => (
+            <img key={n} src={`https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-${n}.jpg`} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover" alt="avatar" />
+          ))}
+        </div>
+        <span className="text-xs sm:text-sm text-gray-600 font-medium whitespace-nowrap">+150 Engineers Ready</span>
+      </div>
+      
+      <div className="bg-dp-orange/10 p-2.5 rounded-xl text-dp-orange text-xl shrink-0">
+        <i className="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+    </div>
+  </div>
+</motion.div>
 
               {/* Floating Badges */}
-              <motion.div 
-                animate={{ opacity: [1, 0.7, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 w-48"
-              >
-                <div className="flex items-center space-x-2 mb-1">
-                  <i className="fa-solid fa-check-circle text-green-500"></i>
-                  <span className="text-sm font-semibold text-dp-blue">AI Verified</span>
-                </div>
-                <div className="text-[10px] text-gray-500">Quality assured by AI</div>
-              </motion.div>
+<motion.div 
+  animate={{ opacity: [1, 0.7, 1] }}
+  transition={{ duration: 2, repeat: Infinity }}
+  className="absolute -top-6 -right-2 sm:-right-6 bg-white rounded-2xl shadow-xl p-4 w-44 sm:w-48 z-20 hidden sm:block"
+>
+  <div className="flex items-center space-x-2 mb-1">
+    <i className="fa-solid fa-check-circle text-green-500"></i>
+    <span className="text-sm font-semibold text-dp-blue">AI Verified</span>
+  </div>
+  <div className="text-[10px] text-gray-500">Quality assured by AI</div>
+</motion.div>
 
-              <div className="absolute -bottom-8 -left-6 bg-dp-orange rounded-2xl shadow-xl p-4 w-44 text-white">
-                <div className="text-2xl font-bold">24/7</div>
-                <div className="text-[10px]">Support Available</div>
-              </div>
+<div className="absolute -bottom-6 sm:-bottom-8 -left-2 sm:-left-6 bg-dp-orange rounded-2xl shadow-xl p-3 sm:p-4 w-36 sm:w-44 text-white hidden sm:block z-20 lg:z-30">
+  <div className="text-xl sm:text-2xl font-bold mb-1">24/7</div>
+  <div className="text-[9px] sm:text-[10px]">Support Available</div>
+</div>
             </motion.div>
           </div>
         </div>
@@ -253,8 +259,7 @@ const UserHome = () => {
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
-            className="productSwiper pb-12"
-          >
+            className="productSwiper pb-12">
             {products.map((product, index) => (
               <SwiperSlide key={index} className="h-auto">
                 <div className="bg-white rounded-3xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full flex flex-col group">
@@ -266,13 +271,11 @@ const UserHome = () => {
                       alt={product.title} 
                     />
                   </div>
-                  
                   {/* النصوص */}
                   <h3 className="text-xl font-bold text-dp-blue mb-3">{product.title}</h3>
                   <p className="text-gray-500 mb-6 flex-grow">
                     Premium bathroom and kitchen fixtures from leading manufacturers
                   </p>
-                  
                   {/* السعر والزرار */}
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
                     <span className="text-dp-orange font-bold text-lg">{product.price}</span>
@@ -298,27 +301,29 @@ const UserHome = () => {
 
         </div>
       </section>
-      <section id="offers-preview" className="py-20 bg-slate-50 relative overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6">
+      {/* 4. Special Offers Section (Swiper) */}
+<section id="offers-preview" className="py-12 md:py-20 bg-slate-50 relative overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
     
     {/* Header with Navigation Arrows */}
-    <div className="flex items-end justify-between mb-12">
-      <div className="text-left">
-        <h2 className="text-4xl font-bold text-dp-blue">Special Offers</h2>
-        <p className="text-gray-500 mt-2">Discover our exclusive <br /> seasonal deals</p>
+    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 md:mb-12">
+      <div className="text-center sm:text-left">
+        <h2 className="text-3xl md:text-4xl font-bold text-dp-blue">Special Offers</h2>
+        <p className="text-gray-500 mt-2">Discover our exclusive <br className="hidden sm:inline" /> seasonal deals</p>
       </div>
       
-      <div className="flex gap-3">
-        <button className="prev-offer-btn w-12 h-12 rounded-full border-2 border-dp-blue flex items-center justify-center text-dp-blue hover:bg-dp-blue hover:text-white transition-all duration-300">
-          <i className="fa-solid fa-chevron-left"></i>
+      <div className="flex gap-3 justify-center sm:justify-end">
+        <button className="prev-offer-btn w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-dp-blue flex items-center justify-center text-dp-blue hover:bg-dp-blue hover:text-white transition-all duration-300">
+          <i className="fa-solid fa-chevron-left text-sm md:text-base"></i>
         </button>
-        <button className="next-offer-btn w-12 h-12 rounded-full border-2 border-dp-blue flex items-center justify-center text-dp-blue hover:bg-dp-blue hover:text-white transition-all duration-300">
-          <i className="fa-solid fa-chevron-right"></i>
+        <button className="next-offer-btn w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-dp-blue flex items-center justify-center text-dp-blue hover:bg-dp-blue hover:text-white transition-all duration-300">
+          <i className="fa-solid fa-chevron-right text-sm md:text-base"></i>
         </button>
       </div>
     </div>
 
     {/* Swiper Container */}
+    {/* زوّدنا الـ pb-20 هنا ليعطي مساحة أكبر تحت السلايدر بالكامل */}
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
       navigation={{
@@ -328,45 +333,47 @@ const UserHome = () => {
       pagination={{ clickable: true }}
       spaceBetween={30}
       autoplay={{ delay: 4000 }}
-      className="offersSwiper pb-16"
+      className="offersSwiper pb-20"
     >
       {offers.map((offer, index) => (
         <SwiperSlide key={index}>
-          <div className="grid lg:grid-cols-2 gap-10 items-center bg-white p-6 md:p-10 rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 h-full">
+          {/* 💡 التعديل السحري هنا: غيرنا p-4 لـ pt-4 px-4 pb-12 في الموبايل */}
+          {/* الـ pb-12 بتعمل مسافة داخلية من تحت ترفع الزرار لفوق وتسيب مكان للنقط تظهر براحتها */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center bg-white pt-4 px-4 pb-12 sm:p-6 md:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 h-full relative">
             
-            {/* Content Side */}
-            <div className="space-y-6 text-left order-2 lg:order-1">
-              <span className={`${offer.bgColor} ${offer.textColor} px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase inline-block`}>
-                {offer.tag}
-              </span>
-              <h3 className="text-4xl font-bold text-dp-blue leading-tight">
-                {offer.sub} <br />
-                <span className="text-dp-orange">{offer.title}</span>
-              </h3>
-              <p className="text-gray-500 text-lg leading-relaxed">
-                {offer.desc}
-              </p>
-              
-              <div className="flex items-center gap-4">
-                <span className="text-4xl font-black text-dp-blue">{offer.price}</span>
-                {offer.oldPrice && (
-                  <span className="text-xl text-gray-300 line-through">{offer.oldPrice}</span>
-                )}
-              </div>
-              
-              <button className="bg-dp-blue text-white px-10 py-4 rounded-xl font-bold hover:shadow-2xl hover:-translate-y-1 transition-all transform active:scale-95">
-                {offer.price === "Special Rates" ? "Browse Catalog" : "Shop Now"}
-              </button>
-            </div>
-
             {/* Image Side */}
-            <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl order-1 lg:order-2">
+            <div className="relative group overflow-hidden rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl order-1 lg:order-2 w-full">
               <img 
-                className="w-full h-[400px] object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                className="w-full h-52 sm:h-64 lg:h-[400px] object-cover transform group-hover:scale-110 transition-transform duration-700" 
                 src={offer.img} 
                 alt={offer.title} 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+
+            {/* Content Side */}
+            <div className="space-y-4 md:space-y-6 text-center lg:text-left order-2 lg:order-1 flex flex-col items-center lg:items-start w-full">
+              <span className={`${offer.bgColor} ${offer.textColor} px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase inline-block`}>
+                {offer.tag}
+              </span>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dp-blue leading-tight">
+                {offer.sub} <br className="hidden sm:inline" />
+                <span className="text-dp-orange">{offer.title}</span>
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-gray-500 leading-relaxed max-w-lg">
+                {offer.desc}
+              </p>
+              
+              <div className="flex items-center gap-4 justify-center lg:justify-start">
+                <span className="text-3xl md:text-4xl font-black text-dp-blue">{offer.price}</span>
+                {offer.oldPrice && (
+                  <span className="text-lg md:text-xl text-gray-300 line-through">{offer.oldPrice}</span>
+                )}
+              </div>
+              
+              <button className="w-full sm:w-auto bg-dp-blue text-white px-10 py-3.5 md:py-4 rounded-xl font-bold hover:shadow-2xl hover:-translate-y-1 transition-all transform active:scale-95">
+                {offer.price === "Special Rates" ? "Browse Catalog" : "Shop Now"}
+              </button>
             </div>
 
           </div>
@@ -376,78 +383,119 @@ const UserHome = () => {
 
   </div>
 </section>
-{/* 5. Project Scan Results (Table) */}
-      <section id="scan-preview" className="py-20 bg-[#EBEBD3]/20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl font-bold text-dp-blue mb-4"
-            >
-              Project Scan Results
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600"
-            >
-              Track your project progress and quality assessments
-            </motion.p>
-          </div>
+      {/* 5. Scan Results Section (Table) */}
+<section id="scan-preview" className="py-12 md:py-20 bg-[#EBEBD3]/20">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    
+    {/* العناوين الرئيسية المتجاوبة */}
+    <div className="text-center mb-10 md:mb-16">
+      <motion.h2 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        className="text-3xl md:text-4xl font-bold text-dp-blue mb-4"
+      >
+        Project Scan Results
+      </motion.h2>
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="text-base md:text-xl text-gray-600 max-w-xl mx-auto"
+      >
+        Track your project progress and quality assessments
+      </motion.p>
+    </div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-[2.5rem] p-8 shadow-xl overflow-hidden"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200 text-left">
-                    <th className="py-4 text-dp-blue font-bold">Project ID</th>
-                    <th className="py-4 text-dp-blue font-bold">Date</th>
-                    <th className="py-4 text-dp-blue font-bold">Phase</th>
-                    <th className="py-4 text-dp-blue font-bold">Status</th>
-                    <th className="py-4 text-dp-blue font-bold">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { id: "#DP2024-001", date: "Dec 10, 2024", phase: "Plumbing", status: "Completed", statusStyle: "bg-green-100 text-green-800" },
-                    { id: "#DP2024-002", date: "Dec 11, 2024", phase: "Electricity", status: "In Progress", statusStyle: "bg-yellow-100 text-yellow-800" },
-                  ].map((row, index) => (
-                    <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="py-4 font-medium">{row.id}</td>
-                      <td className="py-4 text-gray-600">{row.date}</td>
-                      <td className="py-4 font-semibold">{row.phase}</td>
-                      <td className="py-4">
-                        <span className={`${row.statusStyle} px-3 py-1 rounded-full text-xs font-bold`}>
-                          {row.status}
-                        </span>
-                      </td>
-                      <td className="py-4">
-                        <button className="text-dp-orange hover:text-orange-600 font-bold transition-colors">
-                          View Details
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+    {/* الحاوية الرئيسية للكروت والجدول */}
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-4 sm:p-8 shadow-xl overflow-hidden"
+    >
+      
+      {/* 1️⃣ العرض على الشاشات الكبيرة (الجدول التقليدي المستقر) */}
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full text-left">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th className="py-4 text-dp-blue font-bold">Project ID</th>
+              <th className="py-4 text-dp-blue font-bold">Date</th>
+              <th className="py-4 text-dp-blue font-bold">Phase</th>
+              <th className="py-4 text-dp-blue font-bold">Status</th>
+              <th className="py-4 text-dp-blue font-bold">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { id: "#DP2024-001", date: "Dec 10, 2024", phase: "Plumbing", status: "Completed", statusStyle: "bg-green-100 text-green-800" },
+              { id: "#DP2024-002", date: "Dec 11, 2024", phase: "Electricity", status: "In Progress", statusStyle: "bg-yellow-100 text-yellow-800" },
+            ].map((row, index) => (
+              <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                <td className="py-4 font-medium">{row.id}</td>
+                <td className="py-4 text-gray-600">{row.date}</td>
+                <td className="py-4 font-semibold">{row.phase}</td>
+                <td className="py-4">
+                  <span className={`${row.statusStyle} px-3 py-1 rounded-full text-xs font-bold`}>
+                    {row.status}
+                  </span>
+                </td>
+                <td className="py-4">
+                  <button className="text-dp-orange hover:text-orange-600 font-bold transition-colors">
+                    View Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* 2️⃣ العرض على الموبايل (تحويل الصفوف لكروت رأسية أنيقة لمنع السكرول البايظ) */}
+      <div className="block md:hidden space-y-4">
+        {[
+          { id: "#DP2024-001", date: "Dec 10, 2024", phase: "Plumbing", status: "Completed", statusStyle: "bg-green-100 text-green-800" },
+          { id: "#DP2024-002", date: "Dec 11, 2024", phase: "Electricity", status: "In Progress", statusStyle: "bg-yellow-100 text-yellow-800" },
+        ].map((row, index) => (
+          <div key={index} className="border border-gray-100 rounded-2xl p-5 bg-slate-50/50 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-xs font-bold text-gray-400 uppercase">Project ID</span>
+              <span className="font-bold text-dp-blue">{row.id}</span>
             </div>
-            
-            <div className="text-center mt-8">
-              <Link to="/result">
-                <button className="bg-dp-blue text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition-all shadow-lg active:scale-95">
-                  View All Results
-                </button>
-              </Link>
+            <div className="flex justify-between items-center border-t border-gray-100/70 pt-2">
+              <span className="text-xs font-bold text-gray-400 uppercase">Date</span>
+              <span className="text-sm text-gray-600">{row.date}</span>
             </div>
-          </motion.div>
-        </div>
-      </section>
+            <div className="flex justify-between items-center border-t border-gray-100/70 pt-2">
+              <span className="text-xs font-bold text-gray-400 uppercase">Phase</span>
+              <span className="text-sm font-semibold text-dp-blue">{row.phase}</span>
+            </div>
+            <div className="flex justify-between items-center border-t border-gray-100/70 pt-2">
+              <span className="text-xs font-bold text-gray-400 uppercase">Status</span>
+              <span className={`${row.statusStyle} px-3 py-1 rounded-full text-[10px] font-black`}>
+                {row.status}
+              </span>
+            </div>
+            <div className="pt-2">
+              <button className="w-full text-center bg-dp-orange/10 hover:bg-dp-orange text-dp-orange hover:text-white py-2.5 rounded-xl text-sm font-bold transition-all active:scale-95">
+                View Details
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {/* الزر السفلي المتجاوب بالكامل */}
+      <div className="text-center mt-6 md:mt-8">
+        <Link to="/result" className="inline-block w-full sm:w-auto">
+          <button className="w-full sm:w-auto bg-dp-blue text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition-all shadow-lg active:scale-95">
+            View All Results
+          </button>
+        </Link>
+      </div>
+
+    </motion.div>
+  </div>
+</section>
 
       {/* 6. About Preview Section */}
       <section id="about-preview" className="py-20 bg-white overflow-hidden">
