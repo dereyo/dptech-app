@@ -25,10 +25,12 @@ const Login = ({ setIsLoggedIn }) => {
     // ----------------------------------------------------
     if (activeTab === 'signup') {
       try {
+        // 💡 التعديل هنا: إرسال الـ role (client أو engineer) لقاعدة البيانات
         const response = await axios.post('http://localhost:5000/api/auth/register/', {
           name: fullName,
           email: email,
-          password: password
+          password: password,
+          role: role 
         });
         
         console.log('تم إنشاء الحساب بنجاح:', response.data);
@@ -43,13 +45,15 @@ const Login = ({ setIsLoggedIn }) => {
     }
     
     // ----------------------------------------------------
-    // الحالة الثانية: تسجيل الدخول (Log In) - 💡 الإضافة الجديدة هنا
+    // الحالة الثانية: تسجيل الدخول (Log In)
     // ----------------------------------------------------
     if (activeTab === 'login') {
       try {
+        // 💡 التعديل هنا: إرسال الـ role برضه أثناء تسجيل الدخول لو الباك إند بيحتاجه للتحقق
         const response = await axios.post('http://localhost:5000/api/auth/login/', {
           email: email,
-          password: password
+          password: password,
+          role: role
         });
 
         console.log('بيانات الدخول ناجحة:', response.data);
@@ -61,7 +65,10 @@ const Login = ({ setIsLoggedIn }) => {
 
         // حفظ بقية البيانات القديمة بتاعتك
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userRole', role);
+        
+        // 💡 لو الباك إند يرجع الـ role الحقيقي من الداتا بيز نأخذه، وإلا نعتمد المختار حالياً
+        const userRole = response.data.role || response.data.user?.role || role;
+        localStorage.setItem('userRole', userRole);
         
         // تحديث الـ State الرئيسي فوراً
         if (setIsLoggedIn) {
